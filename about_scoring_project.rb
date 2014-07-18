@@ -46,27 +46,22 @@ def score(dice)
   end
 
   hash.each do |key, value|
-    if value >= 3
-      if key == 1
-        score += 1000
-        score += value % 3 * 100
-        next
-      elsif key == 5
-        score += key * 100
-        score += value % 3 * 50
-        next
-      else
-        score += key * 100
-      end
-    end
-
     if key == 1
+      score += 1000 if value >= 3
       score += value % 3 * 100
+      next
     end
 
     if key == 5
+      score += 500 if value >= 3
       score += value % 3 * 50
+      next
     end
+
+    if value >= 3
+      score += key * 100
+    end
+
   end
 
   return score
